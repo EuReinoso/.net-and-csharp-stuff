@@ -3,13 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace mgengine
 {
-    class Rectangle2{
+    public class Rectangle2{
 
         public Vector2 pos {get;set;}
         public float width {get;set;}
         public float height {get;set;}
         public Color color {get;set;}
-
         public Texture2D texture {get;set;}
         
         public Rectangle2(float x, float y, float width, float height, Color color){
