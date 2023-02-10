@@ -27,6 +27,17 @@ namespace mgengine
         public void Draw(SpriteBatch spriteBatch){
             spriteBatch.Draw(this.texture, new Rectangle((int)this.pos.X, (int)this.pos.Y, (int)this.width, (int)this.height), this.color);
         }
+        public bool CollideRect(Rectangle2 rect){
+            Rectangle rect1 = new Rectangle((int)this.pos.X, (int)this.pos.Y, (int)this.width, (int)this.height);
+            Rectangle rect2 = new Rectangle((int)rect.pos.X, (int)rect.pos.Y, (int)rect.width, (int)rect.height);
+
+            if (rect1.Intersects(rect2)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
 
 }

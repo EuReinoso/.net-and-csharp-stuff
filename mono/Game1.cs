@@ -11,6 +11,7 @@ public class Game1 : Game
     int windowWidth;
     private Bar bar1;
     private Bar bar2;
+    private Ball ball;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
@@ -29,6 +30,7 @@ public class Game1 : Game
 
         bar1 = new Bar(0, windowHeight/2 - 50, 15, 100, Color.White);
         bar2 = new Bar(windowWidth - 15, windowHeight/2 - 50, 15, 100, Color.White);
+        ball = new Ball(windowWidth/2 - 7.5f, windowHeight/2 - 7.5f, 15, 15, Color.White); 
 
         base.Initialize();
     }
@@ -41,6 +43,7 @@ public class Game1 : Game
 
         bar1.Load(GraphicsDevice);
         bar2.Load(GraphicsDevice);
+        ball.Load(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -52,6 +55,7 @@ public class Game1 : Game
 
         KeyboardState state = Keyboard.GetState();
 
+        //KEYS
         if(state.IsKeyDown(Keys.Down)){
             bar2.isDown = true;
         }
@@ -79,7 +83,8 @@ public class Game1 : Game
         else if(state.IsKeyUp(Keys.W)){
             bar1.isUp = false;
         }
-
+        
+        //BAR LOGIC
         if(bar1.pos.Y >= windowHeight - bar1.height){
             bar1.pos = new Vector2(bar1.pos.X, windowHeight - bar1.height);
         }
@@ -93,12 +98,29 @@ public class Game1 : Game
         else if(bar2.pos.Y <= 0){
             bar2.pos = new Vector2(bar2.pos.X, 0);
         }
-        
 
+        //BALL LOGIC
+        if (ball.pos.Y >= windowHeight - ball.height || ball.pos.Y <= 0){
+            ball.turnY();
+        }
+        //points
+        if (ball.pos.X >= windowWidth - ball.width){
+            bar1.points += 1;
+            ball.pos = new Vector2(windowWidth/2 - 7.5f, windowHeight/2 - 7.5f);
+        }
+        if (ball.pos.X <= 0){
+            bar2.points += 1;
+            ball.pos = new Vector2(windowWidth/2 - 7.5f, windowHeight/2 - 7.5f);
+        }
+        // ball-bar collission
+        if (ball.CollideRect(bar1) || ball.CollideRect(bar2)){
+            ball.turnX();
+            ball.acelerate();
+        } 
+        
         bar1.update(dt);
         bar2.update(dt);
-
-
+        ball.update(dt);
 
         base.Update(gameTime);
     }
@@ -112,6 +134,7 @@ public class Game1 : Game
 
         bar1.Draw(_spriteBatch);
         bar2.Draw(_spriteBatch);
+        ball.Draw(_spriteBatch);
 
         _spriteBatch.End();
 

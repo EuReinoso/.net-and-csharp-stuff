@@ -6,10 +6,11 @@ namespace mono
     public class Bar : Rectangle2
     {
         public float vel = 0;
-        private float aceleration = 0.3f;
+        private float aceleration = 0.6f;
         private float velLimit = 5;
         public bool isUp {get;set;}
         public bool isDown {get;set;}
+        public int points = 0; 
 
         public Bar(float x, float y, float width, float height, Color color) : base(x, y, width, height, color)
         {
