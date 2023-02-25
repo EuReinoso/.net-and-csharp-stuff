@@ -1,3 +1,3 @@
 ﻿
-using var game = new farmer.Game1();
+using var game = new farmer.Farmer();
 game.Run();
