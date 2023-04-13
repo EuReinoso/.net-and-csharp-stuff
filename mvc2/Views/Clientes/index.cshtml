@@ -1,0 +1,17 @@
+
+@{
+    ViewData["Title"] = "index";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    hello clientes
+
+    <ul>
+        @foreach (var cliente in (List<String>)ViewData["Clientes"])
+        {
+           <li>@cliente</li>
+        }
+    </ul>
+</div>
