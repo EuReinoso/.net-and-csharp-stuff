@@ -11,7 +11,7 @@ using mvc2.Data;
 namespace mvc2.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230413105142_initial")]
+    [Migration("20230416182838_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -26,8 +26,11 @@ namespace mvc2.Migrations
 
             modelBuilder.Entity("mvc2.Models.ClienteModel", b =>
                 {
-                    b.Property<string>("CLI_CODIGON")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CLI_CODIGON")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CLI_CODIGON"));
 
                     b.Property<string>("CLI_CGC")
                         .HasColumnType("nvarchar(max)");

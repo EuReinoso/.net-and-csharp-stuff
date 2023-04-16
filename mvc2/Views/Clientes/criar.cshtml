@@ -1,0 +1,19 @@
+@model ClienteModel
+
+<div>
+    <form asp-action="Create" asp-controller="Clientes" method="post">
+        <div class="form-group">
+            <label asp-for="CLI_CGC" class="control-label"></label>
+            <input asp-for="CLI_CGC" class="form-control" />
+            <span asp-validation-for="CLI_CGC" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CLI_NOME" class="control-label"></label>
+            <input asp-for="CLI_NOME" class="form-control" />
+            <span asp-validation-for="CLI_NOME" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

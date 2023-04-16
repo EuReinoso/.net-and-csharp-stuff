@@ -23,8 +23,11 @@ namespace mvc2.Migrations
 
             modelBuilder.Entity("mvc2.Models.ClienteModel", b =>
                 {
-                    b.Property<string>("CLI_CODIGON")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CLI_CODIGON")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CLI_CODIGON"));
 
                     b.Property<string>("CLI_CGC")
                         .HasColumnType("nvarchar(max)");

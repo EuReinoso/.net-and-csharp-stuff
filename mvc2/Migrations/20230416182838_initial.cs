@@ -14,7 +14,8 @@ namespace mvc2.Migrations
                 name: "Cliente",
                 columns: table => new
                 {
-                    CLI_CODIGON = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CLI_CODIGON = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CLI_CGC = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CLI_NOME = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

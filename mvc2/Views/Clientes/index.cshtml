@@ -6,12 +6,11 @@
 <h1>@ViewData["Title"]</h1>
 
 <div>
-    hello clientes
+    @foreach (var cliente in (List<ClienteModel>)@ViewData["clientes"])
+    {   
+        @cliente.CLI_NOME
+        <a href="@Url.Action("Editar", "Clientes", new { id = cliente.CLI_CODIGON })">Editar</a>
+    }
 
-    <ul>
-        @foreach (var cliente in (List<String>)ViewData["Clientes"])
-        {
-           <li>@cliente</li>
-        }
-    </ul>
+    <a class="btn btn-primary" href="@Url.Action("Criar", "Clientes")">Cadastro</a>
 </div>
